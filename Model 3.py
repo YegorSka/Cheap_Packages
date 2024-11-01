@@ -96,10 +96,6 @@ for i in range(n):
         PostNL+=y[i][k] >= (lpSum([x[i][j][k][l]+x[j][i][l][k] for l in range(n) for j in range(n)])/(2*n^2))-z[i]
         PostNL+=y[i][k] <= (lpSum([x[i][j][k][l] + x[j][i][l][k] for l in range(n) for j in range(n)]) / (2 * n ^ 2)) - z[i] + 1 - 10**-10
 
-# PostNL += lpSum(z>=1, "there should be at least one hub"
-# PostNL += (
-#     lpSum(x for k in nodes)
-# )
 #solve problem
 PostNL.solve()
 #print status
@@ -128,9 +124,7 @@ if LpStatus[PostNL.status] == 'Optimal':
             if i != j:
                 G.add_edge(i+1, j+1, weight=cost[i][j], edge_color="red", edge_width=2.5)
     plt.figure()
-    # Determine edge widths
-    # edge_widths = [2.5 if (edge[0] in hub_nodes and edge[1] in hub_nodes) else 1 for edge in G.edges()]
-    # edge_colors = ['red' if (edge[0] in hub_nodes and edge[1] in hub_nodes) else 'black' for edge in G.edges()]
+
     nx.draw(G, with_labels=True, node_color=nodes_to_color, node_size=node_sizes, font_size=12, font_weight='bold')
     legend_text = "System Cost Information:\n\n" + str(value(PostNL.objective))
     plt.text(0.05, 0.05, legend_text, transform=plt.gca().transAxes, fontsize=10, verticalalignment='bottom')
