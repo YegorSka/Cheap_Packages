@@ -86,10 +86,6 @@ for i in range(n):
 for i in range(n): #every node has one hub
     PostNL += lpSum(y[i][k] for k in range(n))==1
 
-# PostNL += lpSum(z>=1, "there should be at least one hub"
-# PostNL += (
-#     lpSum(x for k in nodes)
-# )
 #solve problem
 PostNL.solve()
 #print status
