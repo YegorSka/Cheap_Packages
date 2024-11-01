@@ -66,40 +66,7 @@ class transportation_system:
                 for p in small:
                     betweenness[p] += self.flow[i][j] * (1/len(small))
         return betweenness
-
-    # def betweenness(self):
-    #     """"Calculates the betweenness centrality of each node in the graph"""
-    #     betweenness = {node:0 for node in range(self.size)} #initialize centrality of all nodes: 0
-    #     for i in range(self.size): #compare all paths to find the minimal one between every pair (i,j) of nodes in graph
-    #         for j in range(self.size):
-    #             smallest_dist = (float("inf"))
-    #             small = []
-    #             for a in range(self.size):
-    #                 if a != i and a != j: #Prevents paths where a would go to itself
-    #                     if (self.mult[0] * self.cost[i][a] + self.mult[2] * self.cost[a][j]) == smallest_dist: #scenario with two shortest paths
-    #                         small.append(a)
-    #                     if (self.mult[0]*self.cost[i][a] + self.mult[2]*self.cost[a][j]) < smallest_dist:
-    #                         small = [a] #node with smallest distance gets put in a list called small
-    #                         smallest_dist = self.mult[0]*self.cost[i][a] + self.mult[2]*self.cost[a][j] #updates smallest distance
-    #             for p in small:
-    #                 betweenness[p] += self.flow[i][j] * (1/len(small))
-    #     for i in range(self.size): #compare all paths to find the minimal one between every pair (i,j) of nodes in graph
-    #         for j in range(self.size):
-    #             smallest_dist = (float("inf"))
-    #             smaller = []
-    #             for a in range(self.size):
-    #                 for b in range(self.size):
-    #                     if a != i and a != j and b!=i and b!=j: #Prevents paths where a would go to itself
-    #                         if (self.mult[0] * self.cost[i][a] + self.mult[1]*self.cost[a][b]+self.mult[2] * self.cost[a][j]) == smallest_dist: #scenario with two shortest paths
-    #                             smaller.append(a)
-    #                             smaller.append(b)
-    #                         if (self.mult[0] * self.cost[i][a] + self.mult[1]*self.cost[a][b]+self.mult[2] * self.cost[a][j]) < smallest_dist:
-    #                             small = [a,b] #node with smallest distance gets put in a list called small
-    #                             smallest_dist = (self.mult[0] * self.cost[i][a] + self.mult[1]*self.cost[a][b]+self.mult[2] * self.cost[a][j]) #updates smallest distance
-    #             for p in smaller:
-    #                 betweenness[p] += self.flow[i][j] * (1/len(small))
-    #     return betweenness
-
+        
     def determine_alpha(self):
         build_cost = 0
         route_cost = 0
@@ -271,20 +238,6 @@ class transportation_system:
         self.connections = self.build(H)
         self.hubs = H
         return min_cost
-        # centrality = self.absolute_centrality(alpha)
-        # self.connections = self.build({centrality[-1][0]})
-        # self.hubs = {centrality[-1][0]}
-        # H = {centrality[-1][0]}.copy()
-        # min_cost = self.system_cost()
-        # for i in range(2,self.size):
-        #     self.hubs.add(centrality[-i][0])
-        #     self.connections = self.build(self.hubs)
-        #     if self.system_cost() < min_cost:
-        #         H = self.hubs.copy()
-        #         min_cost = self.system_cost()
-        # self.hubs = H
-        # self.connections = self.build(H)
-        # return min_cost
 
     def build(self,hubs):
         """"makes matrix with 1 if A is directly connected with B and one of them is a hub and 0 if A and B are not directly connected"""
